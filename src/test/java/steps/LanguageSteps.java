@@ -19,27 +19,18 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class LanguageSteps {
-	WebDriver driver = new ChromeDriver();
+	WebDriver driver = WebDriverManager.getDriver();
     
-    public LanguageSteps() {
-    	CommonSteps.driver = driver;
-    }
-    
-    @Given("estoy en página de inicio")
-    public void estoy_en_la_pagina_de_inicio() {
-        driver.get("https://juice-shop.herokuapp.com/#/search");
-    }
-    
-    @When("cambio el idioma a catalan desde el icono de arriba a la derecha")
-    public void cambiaidiomacatalan() {
+    @When("cambio el idioma a {string} desde el icono {int} de arriba a la derecha")
+    public void cambiaidioma(String idioma, int optionnumber) {
     	WebElement button = driver.findElement(By.cssSelector("[aria-label='Language selection menu']"));
         button.click();
-        WebElement option = driver.findElement(By.id("mat-radio-3"));
+        WebElement option = driver.findElement(By.id("mat-radio-" + optionnumber));
         option.click();
     }
     
-    @Then("el título de la página es Tots els productes")
-    public void titulodelapaginaestotselsproductes() {
+    @Then("el título de la página es {string}")
+    public void titulodelapaginaestotselsproductes(String expectedTitle) {
     	try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -49,7 +40,7 @@ public class LanguageSteps {
     	try {
             WebElement precedingElement = driver.findElement(By.xpath("//*[@id='search-result-heading']/preceding-sibling::*[1]"));
             System.out.println("Preceding element text: " + precedingElement.getText());
-            assertEquals(precedingElement.getText(), "Tots els productes");
+            assertEquals(precedingElement.getText(), expectedTitle);
         } catch (NoSuchElementException e) {
             System.out.println("No preceding sibling found for the element with ID 'search-result-heading'.");
         }

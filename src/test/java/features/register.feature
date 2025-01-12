@@ -1,3 +1,4 @@
+@Register
 Feature: Funcionalidad de registro
   
 	Scenario: Registro correcto
@@ -12,3 +13,5 @@ Feature: Funcionalidad de registro
 		When Cierro el banner de bienvenida
 		And introduzco un email, contraseña dos veces y me olvido de la pregunta de seguridad
 		Then el botón de registro está deshabilitado
+		
+		

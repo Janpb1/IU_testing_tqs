@@ -13,3 +13,6 @@ Feature: Funcionalidad de inicio de sesión en Juice Shop
 	  And Introduzco un correo electrónico o contraseña inválidos
 	  And Hago clic en el botón de inicio de sesión
 	  Then Debería ver un mensaje de error
+	  
+	  
+	  

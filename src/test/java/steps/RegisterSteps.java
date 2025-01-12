@@ -14,11 +14,7 @@ import java.util.Random;
 
 
 public class RegisterSteps {
-	WebDriver driver = new ChromeDriver();
-    
-    public RegisterSteps() {
-    	CommonSteps.driver = driver;
-    }
+	WebDriver driver = WebDriverManager.getDriver();
     
 	@Given("estoy en la página de registro")
     public void estoy_en_la_pagina_de_registro() {

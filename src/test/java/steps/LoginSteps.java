@@ -12,11 +12,7 @@ import static org.testng.Assert.assertTrue;
 import java.time.Duration;
 
 public class LoginSteps {
-    WebDriver driver = new ChromeDriver();
-    
-    public LoginSteps() {
-    	CommonSteps.driver = driver;
-    }
+    WebDriver driver = WebDriverManager.getDriver();
 
     @Given("Estoy en la página de inicio de sesión")
     public void estoy_en_la_pagina_de_inicio_de_sesion() {
@@ -32,13 +28,6 @@ public class LoginSteps {
     @When("Hago clic en el botón de inicio de sesión")
     public void hago_clic_en_el_boton_de_inicio_de_sesion() {
         driver.findElement(By.id("loginButton")).click();
-    }
-
-    @When("Debería ser redirigido a la página principal")
-    public void deberia_ser_redirigido_a_la_pagina_principal() {
-    	Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-    	wait.until(d -> d.getCurrentUrl().contains("/#/search"));
-        assertTrue(driver.getCurrentUrl().contains("/#/search"));
     }
 
     @When("^Introduzco un correo electrónico o contraseña inválidos$")
